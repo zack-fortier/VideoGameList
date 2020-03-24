@@ -10,6 +10,8 @@ CRUD stands for create, read, update, and destroy
 
 Video Game List is a simple list React app where you can add, edit, delete, or show which video games are purchased. 
 
+![Image of VideoGameList](https://https://raw.githubusercontent.com/zack-fortier/VideoGameList/master/videogamelist/src/Manual12.png)
+
 ### How to run
 
 `cd` into the folder in which you downloaded this repo and type `npm start` in the terminal. The project should run on your default browser.
