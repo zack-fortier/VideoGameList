@@ -15,4 +15,4 @@ Video Game List is a simple list React app where you can add, edit, delete, or s
 `cd` into the folder in which you downloaded this repo and type `npm start` in the terminal. The project should run on your default browser.
 
 ### Tutorial
-Tutorial can be found on [Tutorial](www.google.com)
+Tutorial can be found on [Tutorial](https://www.google.com)
