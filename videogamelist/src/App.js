@@ -5,6 +5,7 @@ import EditVideoGameItemForm from './components/EditVideoGameItemForm';
 
 class App extends Component {
 
+  // This constructs every individual video game
   constructor() {
     super();
     this.state = {
@@ -18,6 +19,7 @@ class App extends Component {
       editing: false
     };
 
+    // Handles various crud actions and binds to state
     this.handleInputChange = this.handleInputChange.bind(this);
     this.deleteVideoGameItem = this.deleteVideoGameItem.bind(this);
     this.boughtVideoGameItem = this.boughtVideoGameItem.bind(this);
@@ -27,6 +29,7 @@ class App extends Component {
     this.updateVideoGameItem = this.updateVideoGameItem.bind(this);
   }
 
+  // For each time a text is being typed
   handleInputChange(event) {
     event.preventDefault();
     const target = event.target;
@@ -38,6 +41,7 @@ class App extends Component {
     })
   }
 
+  // Adds a video game to a list
   addVideoGameItem(event){
     event.preventDefault()
     if (!this.state.videogame) return;
@@ -57,20 +61,20 @@ class App extends Component {
     })
   }
 
+  // Deletes video game from list
   deleteVideoGameItem(id) {
     const videogameItems = this.state.videogameItems.filter( item => item.id !== id );
     this.setState({videogameItems: videogameItems});
-    //if(this.state.editing === true) {
-      //window.location.reload();
-    //}
   }
 
+  // Changes a video game from pending to bought
   boughtVideoGameItem(currentVideoGame) {
     const updatedCurrentVideoGame = Object.assign({}, currentVideoGame, { status: true });
     const videogameItems = this.state.videogameItems.map((videogameItem, index) => (videogameItem.id === currentVideoGame.id ? updatedCurrentVideoGame : videogameItem));
     this.setState({videogameItems: videogameItems})
   }
   
+  // Edits an individual video game
   editVideoGameItem(videogameItem) {
     this.setEditing(true);
     this.setState({
@@ -80,6 +84,7 @@ class App extends Component {
     });
   }
   
+  // Allows editing menu to appear
   setEditing(value) {
     if(typeof value !== 'boolean') { throw " This value must either be true or false"}
     this.setState({
@@ -87,6 +92,7 @@ class App extends Component {
     })
   }
 
+  // Updates an individual video game
   updateVideoGameItem(event) {
     event.preventDefault();
     const updatedVideoGame = this.state.videogame;
@@ -98,11 +104,13 @@ class App extends Component {
   }
 
   
+// Displays entire HTML file
 render() {
   const { cost, videogame, videogameItems, editing } = this.state;
     return (
       <div className="App">
-        <div className>
+        <div>
+          {/* Uses VideoGameItemList component */}
           <VideoGameItemList 
             videogameItems= {videogameItems} 
             deleteVideoGameItem={this.deleteVideoGameItem}
@@ -110,9 +118,10 @@ render() {
             editVideoGameItem={this.editVideoGameItem}
           />
         </div>
-        <div className>
+        <div>
         { 
           editing  ? (
+          // Uses EditVideoGameItemForm component
           <EditVideoGameItemForm 
            videogame={this.state.videogame}
            cost={this.state.cost} 
@@ -121,6 +130,7 @@ render() {
            updateVideoGameItem={this.updateVideoGameItem}
           />
           ) : (
+          // Uses AddVideoGameItemForm component
           <AddVideoGameItemForm 
             videogame={this.state.videogame}
             cost={this.state.cost} 
